@@ -4,11 +4,18 @@ import { MathUtils } from "three";
 import { useResizeDetector } from 'react-resize-detector';
 import React, { useRef, useMemo } from 'react';
 import vertexShaderSimplex from "./vertexShaderSimplex";
+import fragmentShader from "./fragmentShader";
 // import vertexShaderPerlin from "./vertexShaderPerlin";
 // import vertexShaderVoronoi from './vertexShaderVoronoi';
-import fragmentShader from "./fragmentShader";
+
 import { OrbitControls } from "@react-three/drei";
 import Roundy from 'roundy';
+
+import fragmentShaderText from '../images/FragmentShader_1-cropped.svg';
+import vertexShaderText from '../images/vertexShader2.svg';
+import closeIcon from '../images/closeIcon.svg';
+import blobIcon from '../images/Vector 1.svg';
+import colorsIcon from '../images/Group 4.svg'
 
 
 
@@ -22,13 +29,7 @@ const SimplexBlob = (props) => {
 
     // const [currentPosition,setCurrentPosition] = React.useState([3 * Math.sin(2*Math.PI), 0, 3 * Math.cos(2*Math.PI)]);
     const [currentShader, setCurrentShader] = React.useState(1);
-    const [currentTexture, setCurrentTexture] = React.useState(1);
     const [isShaderChanged, setIsShaderChanged] = React.useState(false);
-
-    async function changeValues(sign){
-      props.setAdditionalAngle(props.additionalAngle+ (3*Math.PI/180).toFixed(15) * sign );
-      await props.setRotation(props.rotation + 1 * sign);
-    }
 
     function changeShader(){
       setTimeout(()=>{
@@ -43,18 +44,6 @@ const SimplexBlob = (props) => {
             setCurrentShader(1);
         }
         setIsShaderChanged(true);
-      }, 200);
-      setTimeout(()=>{
-        switch (currentTexture){
-          case 1:
-            setCurrentTexture(2);
-            break;
-          case 2:
-            setCurrentTexture(3);
-            break;
-          default:
-            setCurrentTexture(1);
-        }
       }, 200);
     }
 
@@ -79,21 +68,8 @@ const SimplexBlob = (props) => {
   
     useFrame((state) => {
       const { clock } = state;
-      if (props.rotation < 0){
-        // setCurrentPosition([3 * Math.sin(2*Math.PI + additionalAngle + Math.PI/180), 0, 3 * Math.cos(2*Math.PI + additionalAngle + Math.PI/180)]);
-        // setAdditionalAngle(additionalAngle+Math.PI/180);
-        // props.setRotation(props.rotation + 1);
-        // setAdditionalAngle(additionalAngle+Math.PI/180);
-        // props.setRotation(props.rotation + 1);
-        changeValues(1);
-      }
-      if (props.rotation > 0){
-        // setCurrentPosition([3 * Math.sin(2*Math.PI + additionalAngle - Math.PI/180), 0, 3 * Math.cos(2*Math.PI + additionalAngle - Math.PI/180)]);
-        // setAdditionalAngle(additionalAngle-Math.PI/180);
-        // props.setRotation(props.rotation - 1);
-        changeValues(-1);
-      }
 
+      meshSimplex.current.material.uniforms.u_texture_type.value = props.currentTexture;
       meshSimplex.current.material.uniforms.u_time.value = clock.getElapsedTime() * props.speed * 0.01;
       if (!clicked.current){
         meshSimplex.current.material.uniforms.u_intensity.value = MathUtils.lerp(
@@ -103,7 +79,6 @@ const SimplexBlob = (props) => {
         );
       } else {
         meshSimplex.current.material.uniforms.u_shader_type.value = currentShader;
-        meshSimplex.current.material.uniforms.u_texture_type.value = currentTexture;
         if (isShaderChanged){
           setIsShaderChanged(false);
           clicked.current = false;
@@ -268,6 +243,16 @@ const SimplexBlob = (props) => {
 
 
 export default function TexturesSection(props){
+    const [isFragmentSectionOpen, setIsFragmentSectionOpen] = React.useState(false)
+    const [isFragmentDataShown, setIsFragmentDataShown] = React.useState(false);
+    const [isFragmentIconShown, setIsFragmentIconShown] = React.useState(true)
+
+    const [isVertexSectionOpen, setIsVertexSectionOpen] = React.useState(false)
+    const [isVertexDataShown, setIsVertexDataShown] = React.useState(false);
+    const [isVertexIconShown, setIsVertexIconShown] = React.useState(true)
+
+    const [currentTexture, setCurrentTexture] = React.useState(1);
+
     const [rotation,setRotation] = React.useState(0);
     const [additionalAngle, setAdditionalAngle] = React.useState(0);
     const { width = 300, height, ref } = useResizeDetector();
@@ -313,11 +298,39 @@ export default function TexturesSection(props){
     //     }
     // }
 
+    React.useEffect(() => {
+      if (isFragmentSectionOpen){
+        setIsFragmentIconShown(false);
+        setTimeout(() => setIsFragmentDataShown(true), 1000);
+      } else {
+        setIsFragmentDataShown(false);
+        setTimeout(() => setIsFragmentIconShown(true), 1000);
+      }
+    },[isFragmentSectionOpen])
+
+    React.useEffect(() => {
+      if (isVertexSectionOpen){
+        setIsVertexIconShown(false);
+        setTimeout(() => setIsVertexDataShown(true), 1000);
+      } else {
+        setIsVertexDataShown(false);
+        setTimeout(() => setIsVertexIconShown(true), 1000);
+      }
+    },[isVertexSectionOpen])
+
     return(
         <div className='textures-section'>
           <div className='blob'>
             <Canvas camera={{position: [0, 0, 5]}}>
-                <SimplexBlob rotation={rotation} setRotation={setRotation} additionalAngle={additionalAngle} setAdditionalAngle={setAdditionalAngle} speed={props.speedSlider} intensity={props.processingSlider}/>
+                <SimplexBlob 
+                rotation={rotation} 
+                setRotation={setRotation} 
+                additionalAngle={additionalAngle} 
+                setAdditionalAngle={setAdditionalAngle} 
+                speed={props.speedSlider} 
+                intensity={props.processingSlider}
+                currentTexture={currentTexture}
+                />
                 {/* <PerlinBlob rotation={rotation} additionalAngle={additionalAngle}/>
                 <VoronoiBlob rotation={rotation} additionalAngle={additionalAngle}/> */}
                 <ambientLight args={[0xff0000]} intensity={0.1} />
@@ -331,18 +344,79 @@ export default function TexturesSection(props){
                   {/* <Roundy className='round-slider_processing' value={props.processingSlider * 100 || 0.05} min={60} max={240} color={'orange'} radius={width/2} arcSize={110} rotationOffset={-207}sliced={false} step={1} strokeWidth={2} thumbSize={0.5} overrideStyle={'position:absolute; .sliderHandle::after{ width:10px; height:10px; right: -5px;}'} onChange={handleProcessingChange}/>  */}
             </div>
             <div className='blob__color-selectors'>
-              <div className='blob__color-selector blob__color-selector_multicolor'></div>
-              <div className='blob__color-selector blob__color-selector_peach'></div>
-              <div className='blob__color-selector blob__color-selector_sea'></div>
+              <div 
+                className=
+                  {currentTexture == 2 
+                    ? 'blob__color-selector blob__color-selector_multicolor blob__color-selector_selected' 
+                    : 'blob__color-selector blob__color-selector_multicolor'
+                  }
+                onClick={()=>setCurrentTexture(2)}>
+              </div>
+              <div 
+                className=
+                  {currentTexture == 1 
+                    ? 'blob__color-selector blob__color-selector_peach blob__color-selector_selected' 
+                    : 'blob__color-selector blob__color-selector_peach'
+                  }
+                onClick={()=>setCurrentTexture(1)}>
+              </div>
+              <div 
+                className=
+                  {currentTexture == 3 
+                    ? 'blob__color-selector blob__color-selector_sea blob__color-selector_selected' 
+                    : 'blob__color-selector blob__color-selector_sea'
+                  }
+                onClick={()=>setCurrentTexture(3)}>
+              </div>
             </div>
           </div>
-          <div className='blob-description'>
-            <p className='blob-description__texture-name'>Some Noize</p>
-            <p className='blob-description__texture-description'>Colors and gradients which a 3D model is wrapped into are fully a work done by fragment shaders.<br></br><br></br>Are usually defined considering distortion of object to highlight its volume </p>
+          <div className={isFragmentSectionOpen ? 'blob-description': 'blob-description blob-description_wrapped'}>
+            <img 
+              className={isFragmentIconShown ? 'blob-description__spinning-text' : 'blob-description__spinning-text blob-description__spinning-text_hidden'} 
+              src={fragmentShaderText} 
+              onClick={() => setIsFragmentSectionOpen(!isFragmentSectionOpen)}
+            />
+            <img
+              className={isFragmentIconShown ? 'blob-description__icon' : 'blob-description__icon blob-description__icon_hidden'}
+              src={colorsIcon}
+            />
+            <p 
+              className={isFragmentDataShown ? 'blob-description__texture-name' : 'blob-description__texture-name blob-description__texture-name_hidden'}
+            >Fragment Shader
+            </p>
+            <p 
+              className={isFragmentDataShown ? 'blob-description__texture-description' : 'blob-description__texture-description blob-description__texture-description_hidden' }
+            >Each point of the object has its own color which depends on multiple factors (i.e light, uniforms, textures). <br/><br/> The object will be more lively if its surface contains curvatures enabling the shaders to vary its color or blink the light.
+            </p>
+            <img 
+              className={isFragmentDataShown ? 'blob-description__close-description' : 'blob-description__close-description blob-description__close-description_hidden'}
+              src={closeIcon}
+              onClick={() => setIsFragmentSectionOpen(false)}
+            />
           </div>
-          <div className='blob-description blob__description_second'>
-            <p className='blob-description__texture-name'>Some Noize</p>
-            <p className='blob-description__texture-description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia totam pariatur, voluptate corporis asperiores non expedita molestiae, soluta iure iusto, recusandae illum repellat? Natus ut cumque enim animi libero unde.</p>
+          <div className={isVertexSectionOpen ? 'blob-description blob-description_second': 'blob-description blob-description_second blob-description_wrapped'}>
+            <img 
+              className={isVertexIconShown ? 'blob-description__spinning-text' : 'blob-description__spinning-text blob-description__spinning-text_hidden'} 
+              src={vertexShaderText} 
+              onClick={() => setIsVertexSectionOpen(!isVertexSectionOpen)}
+            />
+            <img
+              className={isVertexIconShown ? 'blob-description__icon' : 'blob-description__icon blob-description__icon_hidden'}
+              src={blobIcon}
+            />
+            <p 
+              className={isVertexDataShown ? 'blob-description__texture-name' : 'blob-description__texture-name blob-description__texture-name_hidden'}
+            >Vertex Shader
+            </p>
+            <p 
+              className={isVertexDataShown ? 'blob-description__texture-description' : 'blob-description__texture-description blob-description__texture-description_hidden' }
+            > An algorythm goes through the matrix of all points of the object modifying their coordinates according to the rules enboxed into the algorythm.<br/><br/> Looks best with noise algorythms.
+            </p>
+            <img 
+              className={isVertexDataShown ? 'blob-description__close-description' : 'blob-description__close-description blob-description__close-description_hidden'}
+              src={closeIcon}
+              onClick={() => setIsVertexSectionOpen(false)}
+            />
           </div>
             <div className='textures-section__background-circle textures-section__background-circle_one'></div>
             <div className='textures-section__background-circle textures-section__background-circle_two'></div>

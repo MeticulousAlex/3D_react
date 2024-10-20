@@ -31,9 +31,13 @@ const [isAnimationOver, setIsAnimationOver] = React.useState(false);
   async function checkLocalStorage(){
     if (!isAnimationOver){
       const res = JSON.parse(localStorage.getItem('variable_144ebfe4-de0d-4dae-9d86-aa2411cfa302'));
-      if (res){setIsAnimationOver(res)}
+      if (res){
+        setIsAnimationOver(res);
+        document.body.style('height:auto;')
+      }
       else{
         setTimeout(checkLocalStorage,1000);
+        document.body.style('height:100%;overflow:hidden')
       }
     }
   }
@@ -42,11 +46,9 @@ const [isAnimationOver, setIsAnimationOver] = React.useState(false);
     
     <div className="App"> 
       
-      {/* <p style={{color: 'white'}}>{isAnimationOver}</p> */}
-      <Spline scene="https://draft.spline.design/uCFvIdqD0zv2ZR5v/scene.splinecode"/>
-      {/* <Renderer isAnimationOver={isAnimationOver} setIsAnimationOver={setIsAnimationOver}/> */}
+      <Spline scene="https://draft.spline.design/EqVqdIL1RGzQ0pF7/scene.splinecode"/>
       {/* <Assistant speedSlider={speedSlider} setSpeedSlider={setSpeedSlider} spikesSlider={spikesSlider} setSpikesSlider={setSpikesSlider} processingSlider={processingSlider} setProcessingSlider={setProcessingSlider} type='simplex' screenWidth={screenWidth} setScreenWidth={setScreenWidth}/> */}
-          <div className='main__content'> 
+          <div className='main__content'> {/*isAnimationOver ? 'main__content' : 'main__content main__content_hidden'*/}
             <PrimitiveCarousel/>
             <TexturesSection
               speedSlider={speedSlider}
