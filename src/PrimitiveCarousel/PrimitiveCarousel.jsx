@@ -5,7 +5,7 @@ import { Carousel } from '../Carousel/Carousel';
 import PrimitiveMesh from '../PrimitiveMesh/PrimitiveMesh';
 import Slider from '@mui/material/Slider';
 import { sliderOptions } from '../OptionsSlider/OptionsSlider';
-import { optionLimits } from '../constants';
+import { optionLimits, primitiveDescriptions } from '../constants';
 import settingsIcon from '../images/settings-icon.svg'
 import ReactSwitch from 'react-switch';
 
@@ -51,11 +51,11 @@ export default function PrimitiveCarousel(){
     ])
     
     const cardsArr = [
-        {title: 'Cube', geometry: <boxGeometry args={geometriesOptions[0].options}/>},
-        {title: 'Sphere', geometry: <sphereGeometry args={geometriesOptions[1].options} />},
-        {title: 'Torus', geometry: <torusGeometry args={geometriesOptions[2].options}/>},
-        {title: 'Cone', geometry: <coneGeometry args={geometriesOptions[3].options}/>},
-        {title: 'Torus Knot', geometry: <torusKnotGeometry args={geometriesOptions[4].options}/>}
+        {title: 'Cube', geometry: <boxGeometry args={geometriesOptions[0].options}/>, description: primitiveDescriptions.cube},
+        {title: 'Sphere', geometry: <sphereGeometry args={geometriesOptions[1].options} />, description:primitiveDescriptions.sphere},
+        {title: 'Torus', geometry: <torusGeometry args={geometriesOptions[2].options}/>, description:primitiveDescriptions.torus},
+        {title: 'Cone', geometry: <coneGeometry args={geometriesOptions[3].options}/>, description:primitiveDescriptions.cone},
+        {title: 'Torus Knot', geometry: <torusKnotGeometry args={geometriesOptions[4].options}/>, description:primitiveDescriptions.knot}
     ];
 
     function shuffle(index){
@@ -147,6 +147,7 @@ export default function PrimitiveCarousel(){
 
     return(
             <div className='primitives'>
+                <h2 className='primitives__title title'>PRIMITIVES</h2>
                 <ul className='primitives__list'> { /*style={{height: `calc( 100% )`}} ${geometriesOptions.length * 90 + 150}*/}
                     {cardsArr.map((card, i) => {
                         return(
@@ -203,6 +204,7 @@ export default function PrimitiveCarousel(){
                             })}
                         </ul>
                         <div className='primitives__wireframe-switch'>
+                            <p className='primitives__wireframe-switch-title'>Wireframe</p>
                             <label className='toggle-switch' style={{ background:'#000000' }}>
                                 <input  
                                     className='toggle-switch__input'
@@ -243,7 +245,7 @@ export default function PrimitiveCarousel(){
                 <div className='primitives__primitive-description-wrapper'>
                         <div className='primitives__primitive-description-container glass'>
                             <h3 className='primitives__primitive-description-title'>{cardsArr[active].title}</h3>
-                            <p className='primitives__primitive-description-about'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sapiente adipisci facere est error atque. Accusantium eaque corporis ducimus ut aut, fugiat aliquam similique alias adipisci error et quibusdam temporibus.</p>
+                            <p className='primitives__primitive-description-about'>{cardsArr[active].description}</p>
                         </div>
                 </div>
                 <div className='primitives__background-circle primitives__background-circle_purple'></div>

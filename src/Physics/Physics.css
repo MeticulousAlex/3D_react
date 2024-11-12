@@ -1,0 +1,115 @@
+.physics{
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin: 100px 0 0;
+    box-sizing: border-box;
+}
+
+.physics__title{
+    top:-15%;
+}
+  
+.physics__container{
+    width:90%;
+    border-radius: 50px;
+    border:2px solid white;
+    background: rgb(0,0,0);
+    z-index: 2;
+    overflow:hidden;
+}
+
+.physics__background-circle{
+    position:absolute;
+    aspect-ratio: 1;
+    z-index: 0;
+    border-radius:50%;
+}
+
+.physics__background-circle_purple{
+    top:60%;
+    left:-15%;
+    width:25%;
+    background-color: #A04747;
+    filter: blur(32px);
+    z-index:1;
+}
+
+.physics__background-circle_green{
+    top:10%;
+    left:80%;
+    width:20%;
+    background-color: #A04747;
+    filter: blur(102px);
+}
+
+.physics__background-circle_yellow{
+    top:85%;
+    left:3%;
+    width:15%;
+    background-color: rgb(228, 228, 35);
+    background-color: #D8A25E;
+    filter: blur(92px);
+    z-index:0;
+}
+
+.physics__background-circle_white{
+    top:60%;
+    left:92%;
+    width:15%;
+    background-color: rgb(194, 255, 169);
+    background-color: #A04747;
+    filter: blur(32px);
+}
+
+.physics__background-circle_lime{
+    top:45%;
+    left:85%;
+    width:15%;
+    background-color: rgb(14, 255, 66);
+    background-color: #D8A25E;
+    filter: blur(32px);
+}
+
+.physics__background-circle_blue{
+    top:-5%;
+    left:1%;
+    width:15%;
+    background-color: rgb(0, 140, 255);
+    background-color: #A04747;
+    z-index:0;
+    filter: blur(32px);
+}
+
+.physics__background-circle_small-left-bottom{
+    top:45%;
+    left:3%;
+    width:5%;
+    background-color: #A04747;
+    z-index:0;
+    filter: blur(15px);
+    transform: translate(-50%, -50%);
+}
+
+.physics__background-circle_small-right-top{
+    top:20%;
+    left:69%;
+    width:5%;
+    background-color: #D8A25E;
+    z-index:0;
+    filter: blur(25px);
+    transform: translate(-50%, -50%);
+}
+
+
+.physics__background-circle_central{
+    top:50%;
+    left:50%;
+    width:25%;
+    background-color: #481E14;
+    z-index:0;
+    filter: blur(55px);
+    transform: translate(-50%, -50%);
+}

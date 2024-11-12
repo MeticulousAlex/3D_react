@@ -18,9 +18,6 @@ import blobIcon from '../images/Vector 1.svg';
 import colorsIcon from '../images/Group 4.svg'
 
 
-
-
-
 const SimplexBlob = (props) => {
     
     const meshSimplex = useRef();
@@ -107,7 +104,7 @@ const SimplexBlob = (props) => {
         // onPointerDown={()=> (clicked.current = true)}
         // onPointerDown{}
       >
-        <sphereGeometry args={[2.3, 256,256]}/>
+        <sphereGeometry args={[2.3, 256, 256]}/>
         <shaderMaterial
           fragmentShader={fragmentShader}
           vertexShader={vertexShaderSimplex}
@@ -320,6 +317,7 @@ export default function TexturesSection(props){
 
     return(
         <div className='textures-section'>
+          <h2 className='textures-section__title title'>TEXTURES</h2>
           <div className='blob'>
             <Canvas camera={{position: [0, 0, 5]}}>
                 <SimplexBlob 

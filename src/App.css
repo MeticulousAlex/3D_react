@@ -16,6 +16,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow:hidden;
 }
 
 body::-webkit-scrollbar {
@@ -34,4 +35,20 @@ body::-webkit-scrollbar {
 
 .main__content_hidden{
   display:none;
+}
+
+.title{
+  position: absolute;
+  top:-5%;
+  left:50%;
+  transform:translateX(-50%);
+  padding:10px 20px;
+  border: 1px solid white;
+  border-radius:50px;
+  margin:0;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 2px;
+  font-size: 36px;
 }

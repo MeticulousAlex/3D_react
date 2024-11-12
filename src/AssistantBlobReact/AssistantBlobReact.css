@@ -16,9 +16,13 @@
     display: flex;
     align-items:center;
     justify-content: left;
-    margin:100px 0;
+    margin:100px 0 0;
     width:100%;
     aspect-ratio: calc(16/9);
+}
+
+.textures-section__title{
+    top:10%;
 }
 
 .blob{
