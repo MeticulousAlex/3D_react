@@ -76,16 +76,16 @@ accessible across various device configurations.
 ## How to start
 ```
 //Clone repository
-git clone https://github.com/MeticulousAlex/movies-explorer-frontend.git
+git clone https://github.com/MeticulousAlex/3D_React.git
 
-//Move to the projects folder
-cd movies-explorer-frontend
+//Move to the project's folder
+cd 3D_React
 
 //Install dependencies
 npm install
 
 //Launch project
-npm start
+npm run dev
 
 ```
 ## Feedback
