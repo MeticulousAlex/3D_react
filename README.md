@@ -1,4 +1,4 @@
-# 3D_React project ![](https://img.shields.io/badge/Desktop_only-yellow?style=flat&label=!&color=yellow)
+# 3D_React project ![](https://img.shields.io/badge/Adaptive layout-blue?style=flat&label=🌐&color=blue)
 
 
 
@@ -42,8 +42,10 @@ model selection and customization, a 3D model display, and a description area. T
 these segments provide users with an interactive workspace where they can explore various
 3D primitives and modify their attributes and appearance in real-time.
 
-<img src="https://github.com/user-attachments/assets/7c67ea7c-fa60-4c74-9d4a-2c79e8285d99" width="48.5%" height="100%">
-<img src="https://github.com/user-attachments/assets/9bb50c01-b7b8-40a3-ab1f-bf9e11c61947" width="50%" height="100%">
+<img width="48.5%" height="100%" alt="Screenshot 2026-09-11 at 15 08 28" src="https://github.com/user-attachments/assets/76c7bebc-f641-47e1-8af7-c863c47695fa" />
+<img width="50%" height="100%" alt="Screenshot 2026-09-11 at 15 08 44" src="https://github.com/user-attachments/assets/b32cd476-bb98-4cd3-b695-f71989bfa6ff" />
+
+
 
 ### Shaders section
 
@@ -51,16 +53,20 @@ The Shaders section provides an interactive setup where users can explore and cu
 shaders through a dynamic visualisation interface and accompanying shader descriptions.
 This section emphasises hands-on experience with real-time shader manipulation.
 
-<img src="https://github.com/user-attachments/assets/ea60cf15-c9e9-456a-816b-641a16b2a9ca" width="48%" height="100%">
-<img src="https://github.com/user-attachments/assets/31b68b63-05cb-4d8a-83b1-8a0b6cefbeff" width="50%" height="100%">
+<img width="48%" height="100%" alt="Screenshot 2026-09-11 at 15 08 59" src="https://github.com/user-attachments/assets/8f3589fc-616d-4414-9623-b62723f29b90" />
+<img width="50%" height="100%" alt="Screenshot 2026-09-11 at 15 09 18" src="https://github.com/user-attachments/assets/c3b7bcba-a71d-4cde-8247-24d9bba0c549" />
+
+
 
 ### Physics section
 
 The physics section of the application was crafted in Spline. A key feature of this section is its interactivity, enabling users to drag, drop, and collide the
 boxes in real-time. Spline’s built-in physics capabilities allow boxes to respond naturally touser actions, transitioning and colliding realistically as they are manipulated, thereby transforming the scene into a responsive and tactile experience.
 
-<img src="https://github.com/user-attachments/assets/f2bf281f-8f36-4ca5-9ab9-5b0a8e1f4d7e" width="50%" height="100%">
-<img src="https://github.com/user-attachments/assets/476b34fc-70a6-4148-bfd5-c75183239ec0" width="48.75%" height="100%">
+<img width="50%" height="100%" alt="Screenshot 2026-09-11 at 15 09 44" src="https://github.com/user-attachments/assets/70616016-0210-42ed-9b77-6ddfc135a2c2" />
+<img width="48.75%" height="100%" alt="Screenshot 2026-09-11 at 15 09 49" src="https://github.com/user-attachments/assets/6465585e-487b-4fa5-9f97-0866b9d32b9b" />
+
+
 
 ### Custom model upload section
 
@@ -69,8 +75,9 @@ users to import and view their custom 3D models of formats such as FBX, OBJ, GLT
 GLB or to upload files directly from their computer’s file explorer, making the feature
 accessible across various device configurations.
 
-<img src="https://github.com/user-attachments/assets/535845ff-044d-4199-92c7-39acdfb92f21" width="50%" height="100%">
-<img src="https://github.com/user-attachments/assets/111a5b8c-34e3-43e1-9701-7f9acb5b9456" width="48%" height="100%">
+<img width="50%" height="100%" alt="Screenshot 2026-09-11 at 15 10 06" src="https://github.com/user-attachments/assets/a44b4564-1559-4727-960c-68745a12d104" />
+<img width="48%" height="100%" alt="Screenshot 2026-09-11 at 15 10 27" src="https://github.com/user-attachments/assets/31f54a15-2c8a-4100-b0a5-b1535b3c9af3" />
+
 
 
 ## How to start
