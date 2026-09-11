@@ -1,0 +1,77 @@
+.arc-slider{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.arc-slider__tick{
+    stroke: rgba(255, 255, 255, 0.28);
+    stroke-width: 0.3;
+}
+
+.arc-slider__track{
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.14);
+    stroke-width: 0.6;
+    stroke-linecap: round;
+}
+
+.arc-slider__fill{
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 0.9;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 1.2px rgba(255, 87, 51, 0.8));
+}
+
+.arc-slider__label{
+    font-family: var(--mono);
+    font-size: 2.6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    fill: var(--dim);
+}
+
+.arc-slider__value{
+    fill: var(--text);
+}
+
+.arc-slider__control{
+    outline: none;
+    touch-action: none;
+}
+
+.arc-slider__hit{
+    fill: none;
+    stroke: transparent;
+    stroke-width: 9;
+    pointer-events: stroke;
+    cursor: grab;
+}
+
+.arc-slider__control:active .arc-slider__hit{
+    cursor: grabbing;
+}
+
+.arc-slider__handle{
+    fill: #fff;
+    stroke: var(--accent);
+    stroke-width: 0.8;
+    pointer-events: none;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 0.2s var(--ease);
+}
+
+.arc-slider__control:hover .arc-slider__handle,
+.arc-slider__control:active .arc-slider__handle,
+.arc-slider__control:focus-visible .arc-slider__handle{
+    transform: scale(1.35);
+}
+
+.arc-slider__control:focus-visible .arc-slider__track{
+    stroke: rgba(255, 87, 51, 0.5);
+}
