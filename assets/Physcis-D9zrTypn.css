@@ -1,0 +1,1 @@
+.physics{aspect-ratio:16 / 9;max-height:80vh;width:100%;background:#000}.physics__scene{position:absolute;top:0;left:0;transform-origin:0 0}@media (max-width: 900px){.physics{aspect-ratio:4 / 5}}
